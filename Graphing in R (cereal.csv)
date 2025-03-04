@@ -1,0 +1,53 @@
+# Load the data 
+cereal_data <- read.csv("Path_To_Csv_File")
+
+# Figure 1 (Histogram) 
+hist(cereal_data$calories,
+main = "Calorie Content of Cereals", 
+xlab = "Calories",
+ylab = "Frequency", 
+col = "lightblue", 
+border = "black") 
+
+# Figure 2 (Histogram)
+hist(cereal_data$fiber, 
+main = "", 
+xlab = "Fiber Content", 
+ylab = "Frequency", 
+col = "green", 
+border = "black", 
+ylim = c(0, 50)) 
+
+# Figure 3 (Boxplot)
+boxplot(cereal_data$sodium, 
+main = "Sodium Content in Cereals", 
+xlab = "Sodium (mg)", 
+horizontal = TRUE, 
+ylim = c(0, 350), 
+col = "orange", 
+border = "black") 
+
+# Figure 4 (Graph)
+par(pty = "s") 
+plot(cereal_data$sodium, cereal_data$calories, 
+main = "", 
+xlab = "Sodium (mg)", 
+ylab = "Calories", 
+pch = 19, 
+col = "red") 
+
+# Regression line (Figure 4)
+abline(lm(calories ~ sodium, data = cereal_data),
+col = "blue", 
+lwd = 2) 
+
+# Correlation coefficient (Figure 4)
+correlation <- cor(cereal_data$calories, cereal_data$sodium) 
+correlation 
+[1] 0.3006492 
+
+# Equation for the regression line (Figure 4)
+coefficients <- coef(lm(calories ~ sodium, data = cereal_data)) 
+coefficients 
+(Intercept)      sodium 
+95.72560605      0.06987624
